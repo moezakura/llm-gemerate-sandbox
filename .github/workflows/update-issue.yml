@@ -26,6 +26,7 @@ jobs:
       env:
         ISSUE_TITLE: ${{ github.event.issue.title}}
         ISSUE_CONTENT: ${{ github.event.comment.body }}
+        ISSUE_ID: ${{ github.event.issue.number }}
       run: |
         jq -n \
         --arg title "$ISSUE_TITLE" \
