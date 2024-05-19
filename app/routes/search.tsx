@@ -12,16 +12,19 @@ export const meta: MetaFunction = () => {
 export default function Search() {
 	const items = [
 		{
+			id: 1,
 			title: "タイトル",
 			description: "説明文説明文説明文説明文説明文説明文説明文",
 			imageUrl: "https://via.placeholder.com/300",
 		},
 		{
+			id: 2,
 			title: "タイトル",
 			description: "説明文説明文説明文説明文説明文説明文説明文",
 			imageUrl: "https://via.placeholder.com/300",
 		},
 		{
+			id: 3,
 			title: "タイトル",
 			description: "説明文説明文説明文説明文説明文説明文説明文",
 			imageUrl: "https://via.placeholder.com/300",
