@@ -13,16 +13,27 @@ jobs:
       env:
         ISSUE_TITLE: ${{ github.event.issue.title}}
         ISSUE_CONTENT: ${{ github.event.issue.body }}
-      run: echo -ne "${ISSUE_TITLE}\n${ISSUE_CONTENT}" > contents
+        ISSUE_ID: ${{ github.event.issue.number }}
+      run: |
+      jq -n \ 
+      --arg title "$ISSUE_TITLE" \ 
+      --arg content "$ISSUE_CONTENT" \ 
+      --arg issue_id "$ISSUE_ID" \
+      '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
 
     - name: Create messages for new comments
       if: github.event_name == 'issue_comment' && github.event.action == 'created'
       env:
         ISSUE_TITLE: ${{ github.event.issue.title}}
         ISSUE_CONTENT: ${{ github.event.comment.body }}
-      run: echo -ne "${ISSUE_TITLE}\n${ISSUE_CONTENT}" > contents
+      run: |
+      jq -n \ 
+      --arg title "$ISSUE_TITLE" \ 
+      --arg content "$ISSUE_CONTENT" \ 
+      --arg issue_id "$ISSUE_ID" \
+      '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
 
     - name: Run | Show content
       run: |
-        cat contents
+        cat contents.json
 
