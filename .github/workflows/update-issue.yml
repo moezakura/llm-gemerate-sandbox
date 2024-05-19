@@ -15,11 +15,11 @@ jobs:
         ISSUE_CONTENT: ${{ github.event.issue.body }}
         ISSUE_ID: ${{ github.event.issue.number }}
       run: |
-      jq -n \ 
-      --arg title "$ISSUE_TITLE" \ 
-      --arg content "$ISSUE_CONTENT" \ 
-      --arg issue_id "$ISSUE_ID" \
-      '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
+        jq -n \ 
+        --arg title "$ISSUE_TITLE" \ 
+        --arg content "$ISSUE_CONTENT" \ 
+        --arg issue_id "$ISSUE_ID" \
+        '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
 
     - name: Create messages for new comments
       if: github.event_name == 'issue_comment' && github.event.action == 'created'
@@ -27,11 +27,11 @@ jobs:
         ISSUE_TITLE: ${{ github.event.issue.title}}
         ISSUE_CONTENT: ${{ github.event.comment.body }}
       run: |
-      jq -n \ 
-      --arg title "$ISSUE_TITLE" \ 
-      --arg content "$ISSUE_CONTENT" \ 
-      --arg issue_id "$ISSUE_ID" \
-      '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
+        jq -n \ 
+        --arg title "$ISSUE_TITLE" \ 
+        --arg content "$ISSUE_CONTENT" \ 
+        --arg issue_id "$ISSUE_ID" \
+        '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
 
     - name: Run | Show content
       run: |
