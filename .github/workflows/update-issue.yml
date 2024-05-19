@@ -11,18 +11,16 @@ jobs:
     - name: Create messages for new issue
       if: github.event_name == 'issues' && github.event.action == 'opened'
       env:
-        TITLE: ${{ github.event.sender.login}} が新しい issue を公開しました
         ISSUE_TITLE: ${{ github.event.issue.title}}
-        ISSUE_LINK: ${{ github.event.issue.html_url }}
-      run: echo -ne "${TITLE}\n${ISSUE_TITLE}\n${ISSUE_LINK}" > contents
+        ISSUE_CONTENT: ${{ github.event.comment.body }}
+      run: echo -ne "${ISSUE_TITLE}\n${ISSUE_CONTENT}" > contents
 
     - name: Create messages for new comments
       if: github.event_name == 'issue_comment' && github.event.action == 'created'
       env:
-        TITLE: ${{ github.event.sender.login}} がコメントしました
         ISSUE_TITLE: ${{ github.event.issue.title}}
-        ISSUE_LINK: ${{ github.event.comment.html_url }}
-      run: echo -ne "${TITLE}\n${ISSUE_TITLE}\n${ISSUE_LINK}" > contents
+        ISSUE_CONTENT: ${{ github.event.comment.body }}
+      run: echo -ne "${ISSUE_TITLE}\n${ISSUE_CONTENT}" > contents
 
     - name: Run | Show content
       run: |
