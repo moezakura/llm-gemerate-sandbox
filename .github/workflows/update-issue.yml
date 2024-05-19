@@ -16,8 +16,8 @@ jobs:
         ISSUE_ID: ${{ github.event.issue.number }}
       run: |
         jq -n \ 
-        --arg title "$ISSUE_TITLE" \ 
-        --arg content "$ISSUE_CONTENT" \ 
+        --arg title "$ISSUE_TITLE" \
+        --arg content "$ISSUE_CONTENT" \
         --arg issue_id "$ISSUE_ID" \
         '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
 
@@ -28,8 +28,8 @@ jobs:
         ISSUE_CONTENT: ${{ github.event.comment.body }}
       run: |
         jq -n \ 
-        --arg title "$ISSUE_TITLE" \ 
-        --arg content "$ISSUE_CONTENT" \ 
+        --arg title "$ISSUE_TITLE" \
+        --arg content "$ISSUE_CONTENT" \
         --arg issue_id "$ISSUE_ID" \
         '{"title": $title, "content": $content, "issue_id": $issue_id}' > contents.json
 
