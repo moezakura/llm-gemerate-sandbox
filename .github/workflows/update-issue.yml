@@ -12,7 +12,7 @@ jobs:
       if: github.event_name == 'issues' && github.event.action == 'opened'
       env:
         ISSUE_TITLE: ${{ github.event.issue.title}}
-        ISSUE_CONTENT: ${{ github.event.comment.body }}
+        ISSUE_CONTENT: ${{ github.event.issue.body }}
       run: echo -ne "${ISSUE_TITLE}\n${ISSUE_CONTENT}" > contents
 
     - name: Create messages for new comments
